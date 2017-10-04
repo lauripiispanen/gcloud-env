@@ -5,6 +5,8 @@ For fresh setup, you'll need to grab credentials and `account.json` from Google 
 
 ### Configuration
 
+Set appropriate Terraform variables (project, ssh_inbound_ip). You can source them from a `.env` file.
+
 Configure GCE dynamic inventory for Ansible: download and setup `gce.ini` from [Ansible contrib](https://github.com/ansible/ansible/tree/devel/contrib/inventory). Add credentials for `gce.py` to use your service account.
 
 **Example:**
