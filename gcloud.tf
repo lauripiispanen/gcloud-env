@@ -9,6 +9,8 @@ resource "google_compute_instance" "default" {
   machine_type = "f1-micro"
   zone         = "${var.zone}"
 
+  tags         = [ "cryptodog" ]
+
   boot_disk {
     initialize_params {
       image = "${var.image}"
@@ -21,6 +23,10 @@ resource "google_compute_instance" "default" {
     access_config {
       // Ephemeral IP
     }
+  }
+
+  metadata {
+    ssh-keys = "root:${file("${var.public_key_path}")}"
   }
 
   attached_disk {
@@ -36,3 +42,16 @@ resource "google_compute_disk" "data_disk" {
   zone = "${var.zone}"
   size = "50"
 }
+
+resource "google_compute_firewall" "allow-ssh" {
+    name = "allow-ssh"
+    network = "default"
+
+    allow {
+        protocol = "tcp"
+        ports = ["22"]
+    }
+
+    source_ranges = ["${var.ssh_inbound_ip}/32"]
+}
+

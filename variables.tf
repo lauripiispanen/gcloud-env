@@ -16,3 +16,11 @@ variable "image" {
   type    = "string"
   default = "ubuntu-os-cloud/ubuntu-1704"
 }
+
+variable "public_key_path" {
+  default = "~/.ssh/gcloud_id_rsa.pub"
+}
+
+variable "ssh_inbound_ip" {
+  type    = "string"
+}
