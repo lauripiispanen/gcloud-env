@@ -1,0 +1,6 @@
+- name: configure and deploy cryptodog
+  hosts: tag_cryptodog
+  remote_user: ubuntu
+
+  roles:
+    - cryptodog
