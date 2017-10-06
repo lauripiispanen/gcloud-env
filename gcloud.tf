@@ -34,6 +34,10 @@ resource "google_compute_instance" "default" {
    device_name = "${google_compute_disk.data_disk.name}"
   }
 
+  provisioner "local-exec" {
+    command = "sleep 20; ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u ubuntu -i gce.py site.yml"
+  }
+
 }
 
 resource "google_compute_disk" "data_disk" {
