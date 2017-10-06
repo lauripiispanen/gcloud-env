@@ -3,9 +3,24 @@ GCE Environment config
 
 For fresh setup, you'll need to grab credentials and `account.json` from Google Cloud Console.
 
+### Requirements
+
+* Terraform
+* Ansible
+* virtualenv (recommended)
+* PyEnv (recommended)
+
 ### Configuration
 
 Set appropriate Terraform variables (project, ssh_inbound_ip). You can source them from a `.env` file.
+
+**Example:**
+
+```
+export TF_VAR_project=project-12345678
+export TF_VAR_ssh_inbound_ip=127.0.0.1
+export TF_VAR_public_key_path=~/.ssh/id_gcloud_rsa.pub
+```
 
 Configure GCE dynamic inventory for Ansible: download and setup `gce.ini` from [Ansible contrib](https://github.com/ansible/ansible/tree/devel/contrib/inventory). Add credentials for `gce.py` to use your service account.
 
