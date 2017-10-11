@@ -1,3 +1,20 @@
-- name: Testing
-  debug:
-    msg: "System {{ inventory_hostname }} has uuid {{ ansible_product_uuid }}"
+- name: Create filesystem on data disk
+  filesystem:
+    fstype: ext4
+    dev: /dev/disk/by-id/google-crypto-data-disk
+  become: true
+
+- name: Mount data disk
+  mount:
+    path: /mnt/crypto-data
+    src: /dev/disk/by-id/google-crypto-data-disk
+    fstype: ext4
+    state: mounted
+  become: true
+
+- name: Download ticker dumper
+  get_url:
+    url: https://github.com/lauripiispanen/poloniex-ticker-dumper/releases/download/0.1/tickerdumper
+    dest: /usr/local/bin/tickerdumper
+    mode: 0777
+  become: true
