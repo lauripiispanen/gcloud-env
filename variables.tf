@@ -20,7 +20,3 @@ variable "image" {
 variable "public_key_path" {
   default = "~/.ssh/gcloud_id_rsa.pub"
 }
-
-variable "ssh_inbound_ip" {
-  type    = "string"
-}
