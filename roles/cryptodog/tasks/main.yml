@@ -1,3 +1,16 @@
+- name: Add tickerdumper group
+  group:
+    name: tickerdumper
+    state: present
+  become: true
+
+- name: Add user ubuntu to tickerdumper group
+  user:
+    name: ubuntu
+    groups: tickerdumper
+    append: yes
+  become: true
+
 - name: Create filesystem on data disk
   filesystem:
     fstype: ext4
@@ -10,6 +23,13 @@
     src: /dev/disk/by-id/google-crypto-data-disk
     fstype: ext4
     state: mounted
+  become: true
+
+- name: Chgroup data disk to tickerdumpers
+  file:
+    path: /mnt/crypto-data
+    group: tickerdumper
+    mode: 0775
   become: true
 
 - name: Download ticker dumper
