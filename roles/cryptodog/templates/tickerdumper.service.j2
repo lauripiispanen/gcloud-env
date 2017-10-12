@@ -1,0 +1,9 @@
+[Unit]
+Description=Ticker Dumper
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/home/ubuntu
+ExecStart=/usr/local/bin/tickerdumper --dir /mnt/crypto-data
+Restart=on-failure
