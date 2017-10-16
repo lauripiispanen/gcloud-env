@@ -18,8 +18,8 @@ Set appropriate Terraform variables (project, ssh_inbound_ip). You can source th
 
 ```
 export TF_VAR_project=project-12345678
-export TF_VAR_ssh_inbound_ip=127.0.0.1
 export TF_VAR_public_key_path=~/.ssh/id_gcloud_rsa.pub
+export GOOGLE_APPLICATION_CREDENTIALS=./account.json
 ```
 
 Configure GCE dynamic inventory for Ansible: download and setup `gce.ini` from [Ansible contrib](https://github.com/ansible/ansible/tree/devel/contrib/inventory). Add credentials for `gce.py` to use your service account.
