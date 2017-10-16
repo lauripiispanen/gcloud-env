@@ -46,3 +46,16 @@ resource "google_compute_disk" "data_disk" {
   zone = "${var.zone}"
   size = "50"
 }
+
+resource "google_compute_firewall" "allow-ssh" {
+    name = "allow-ssh"
+    network = "default"
+
+    allow {
+        protocol = "tcp"
+        ports = ["22"]
+    }
+
+    source_ranges = ["${var.ssh_inbound_ip}/32"]
+}
+
