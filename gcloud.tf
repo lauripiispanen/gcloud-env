@@ -9,7 +9,7 @@ resource "google_compute_instance" "default" {
   machine_type = "f1-micro"
   zone         = "${var.zone}"
 
-  tags         = [ "cryptodog" ]
+  tags         = [ "cryptodog", "commits" ]
 
   boot_disk {
     initialize_params {
