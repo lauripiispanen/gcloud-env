@@ -4,3 +4,10 @@
 
   roles:
     - cryptodog
+
+- name: configure and deploy github top committers script
+  hosts: tag_commits
+  remote_user: ubuntu
+
+  roles:
+    - commits
