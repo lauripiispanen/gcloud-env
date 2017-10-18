@@ -1,14 +1,14 @@
-- copy:
-    src: run_commits_batch.sh
+- template:
+    src: run_commits_batch.sh.j2
     dest: ~/run_commits_batch.sh
     owner: ubuntu
     mode: 0755
 
 - cron:
-    name: ""
+    name: "commits.top data batch job"
     user: ubuntu
     weekday: 1
     hour: 0
     minute: 1
     job: "~/run_commits_batch.sh"
-    state: absent
+    state: present

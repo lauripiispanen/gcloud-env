@@ -1,0 +1,9 @@
+#!/bin/sh
+
+git clone https://{{ github_token }}@github.com/lauripiispanen/github-top.git
+cd github-top
+git config user.email "{{ github_email }}"
+git config user.name "commits.top bot"
+./generate_batch.sh {{ github_token }}
+cd ..
+rm -rf github-top
