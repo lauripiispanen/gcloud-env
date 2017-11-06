@@ -1,0 +1,13 @@
+- copy:
+    src: upload_crypto_data.sh
+    dest: ~/upload_crypto_data.sh
+    owner: ubuntu
+    mode: 0755
+
+- cron:
+    name: "Cloud storage upload batch job"
+    user: ubuntu
+    hour: 0
+    minute: 20
+    job: "~/upload_crypto_data.sh"
+    state: present

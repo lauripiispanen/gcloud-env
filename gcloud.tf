@@ -59,3 +59,14 @@ resource "google_compute_firewall" "allow-ssh" {
     source_ranges = ["${var.ssh_inbound_ip}/32"]
 }
 
+resource "google_storage_bucket" "crypto-storage" {
+    name = "crypto-storage-bucket"
+    location = "${var.region}"
+    storage_class = "regional"
+}
+
+resource "google_storage_bucket_acl" "crypto-storage" {
+    bucket = "crypto-storage-bucket"
+    predefined_acl = "publicread"
+}
+
