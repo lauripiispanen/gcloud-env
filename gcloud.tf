@@ -62,7 +62,7 @@ resource "google_compute_firewall" "allow-ssh" {
 resource "google_storage_bucket" "crypto-storage" {
     name = "crypto-storage-bucket"
     location = "${var.region}"
-    storage_class = "regional"
+    storage_class = "REGIONAL"
 }
 
 resource "google_storage_bucket_acl" "crypto-storage" {
