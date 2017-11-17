@@ -9,7 +9,7 @@ resource "google_compute_instance" "default" {
   machine_type = "f1-micro"
   zone         = "${var.zone}"
 
-  tags         = [ "cryptodog", "commits" ]
+  tags         = [ "cryptodog", "commits", "limited-ssh" ]
 
   boot_disk {
     initialize_params {
@@ -47,17 +47,32 @@ resource "google_compute_disk" "data_disk" {
   size = "50"
 }
 
-resource "google_compute_firewall" "allow-ssh" {
-    name = "allow-ssh"
+resource "google_compute_firewall" "allow-selected-ssh" {
+    name = "allow-selected-ssh"
     network = "default"
 
     allow {
         protocol = "tcp"
         ports = ["22"]
     }
-
     source_ranges = ["${var.ssh_inbound_ip}/32"]
+    target_tags = ["limited-ssh"]
 }
+
+resource "google_compute_firewall" "deny-all-ssh" {
+    name = "deny-all-ssh"
+    network = "default"
+
+    deny {
+        protocol = "tcp"
+        ports = ["22"]
+    }
+    source_ranges = ["0.0.0.0/0"]
+#    source_ranges = ["192.168.1.1/32"]
+    target_tags = ["limited-ssh"]
+    priority = 2000
+}
+
 
 resource "google_storage_bucket" "crypto-storage" {
     name = "crypto-storage-bucket"
