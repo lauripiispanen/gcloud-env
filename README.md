@@ -52,3 +52,5 @@ ssh-add <path to private key>
 ### Running
 
 `terraform plan -var [project]` and `terraform apply`. `terraform destroy` to pull instances down.
+
+If Ansible provisioning is all you need you can run `ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u ubuntu -i gce.py site.yml --ask-vault-pass`
