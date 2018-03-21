@@ -52,4 +52,5 @@
   service:
     name: tickerdumper
     state: started
+    enabled: yes
   become: true
