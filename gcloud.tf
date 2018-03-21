@@ -35,7 +35,7 @@ resource "google_compute_instance" "default" {
   }
 
   provisioner "local-exec" {
-    command = "sleep 20; ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u ubuntu -i gce.py site.yml"
+    command = "sleep 30; ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u ubuntu -i gce.py site.yml --vault-password-file ./.vault_password --private-key ${var.private_key_path}"
   }
 
 }
