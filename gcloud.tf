@@ -26,7 +26,7 @@ resource "google_compute_instance" "default" {
   }
 
   metadata {
-    ssh-keys = "root:${file("${var.public_key_path}")}"
+    sshKeys = "ubuntu:${file("${var.public_key_path}")}"
   }
 
   attached_disk {
