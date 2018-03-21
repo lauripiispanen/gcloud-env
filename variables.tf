@@ -21,6 +21,10 @@ variable "public_key_path" {
   default = "~/.ssh/gcloud_id_rsa.pub"
 }
 
+variable "private_key_path" {
+  default = "~/.ssh/id_gcloud_rsa"
+}
+
 variable "ssh_inbound_ip" {
   type    = "string"
 }
