@@ -14,7 +14,7 @@ variable "project" {
 
 variable "image" {
   type    = "string"
-  default = "ubuntu-os-cloud/ubuntu-1710"
+  default = "ubuntu-os-cloud/ubuntu-1810"
 }
 
 variable "public_key_path" {
