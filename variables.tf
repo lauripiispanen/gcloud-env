@@ -1,11 +1,11 @@
 variable "region" {
   type    = "string"
-  default = "europe-west1"
+  default = "us-east1"
 }
 
 variable "zone" {
   type    = "string"
-  default = "europe-west1-b"
+  default = "us-east1-b"
 }
 
 variable "project" {
