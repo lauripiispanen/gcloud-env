@@ -175,7 +175,8 @@ class GceInventory(object):
         # Cache management
         start_inventory_time = time()
         cache_used = False
-        if self.args.refresh_cache or not self.cache.is_valid():
+        # if self.args.refresh_cache or not self.cache.is_valid():
+        if True:
             self.do_api_calls_update_cache()
         else:
             self.load_inventory_from_cache()
