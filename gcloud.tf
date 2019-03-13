@@ -32,11 +32,11 @@ resource "google_compute_instance" "default" {
 
   provisioner "local-exec" {
     // remove potentially offending local known_hosts key for recreated host
-    command = "ssh-keygen -R ${google_compute_instance.default.network_interface.0.access_config.0.nat_ip}"
+    command = "sleep 30; ssh-keygen -R ${google_compute_instance.default.network_interface.0.access_config.0.nat_ip} & ssh-keyscan -t rsa ${google_compute_instance.default.network_interface.0.access_config.0.nat_ip} >> \"$HOME/.ssh/known_hosts\""
   }
 
   provisioner "local-exec" {
-    command = "sleep 30; ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u ubuntu -i gce.py site.yml --vault-password-file ./.vault_password --private-key ${var.private_key_path}"
+    command = "sleep 30; ansible-playbook -u ubuntu -i gce.py site.yml --vault-password-file ./.vault_password --private-key ${var.private_key_path} -e \"ansible_python_interpreter=/usr/bin/python3\""
   }
 
 }
