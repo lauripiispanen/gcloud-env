@@ -30,9 +30,9 @@ resource "google_compute_instance" "default" {
     sshKeys = "ubuntu:${file("${var.public_key_path}")}"
   }
 
-  attached_disk {
-   source      = "${google_compute_disk.data_disk.self_link}"
-   device_name = "${google_compute_disk.data_disk.name}"
+  provisioner "local-exec" {
+    // remove potentially offending local known_hosts key for recreated host
+    command = "ssh-keygen -R ${google_compute_instance.default.network_interface.0.access_config.0.nat_ip}"
   }
 
   provisioner "local-exec" {
