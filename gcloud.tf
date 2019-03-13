@@ -10,7 +10,7 @@ resource "google_compute_instance" "default" {
   machine_type = "f1-micro"
   zone         = "${var.zone}"
 
-  tags         = [ "cryptodog", "commits", "limited-ssh" ]
+  tags         = [ "commits", "limited-ssh" ]
 
   boot_disk {
     initialize_params {
@@ -41,13 +41,6 @@ resource "google_compute_instance" "default" {
 
 }
 
-resource "google_compute_disk" "data_disk" {
-  name = "crypto-data-disk"
-  type = "pd-standard"
-  zone = "${var.zone}"
-  size = "50"
-}
-
 resource "google_compute_firewall" "allow-selected-ssh" {
     name = "allow-selected-ssh"
     network = "default"
@@ -73,16 +66,3 @@ resource "google_compute_firewall" "deny-all-ssh" {
     target_tags = ["limited-ssh"]
     priority = 2000
 }
-
-
-resource "google_storage_bucket" "crypto-storage" {
-    name = "crypto-storage-bucket"
-    location = "${var.region}"
-    storage_class = "REGIONAL"
-}
-
-resource "google_storage_bucket_acl" "crypto-storage" {
-    bucket = "crypto-storage-bucket"
-    predefined_acl = "publicread"
-}
-

@@ -1,5 +1,0 @@
-- name: Setup tickerdumper
-  import_tasks: tickerdumper.yml
-
-- name: Setup cloud storage upload cron job
-  import_tasks: cloudstorage.yml
